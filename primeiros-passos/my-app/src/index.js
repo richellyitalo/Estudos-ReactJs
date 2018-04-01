@@ -8,6 +8,10 @@ import AppAninhados from './meusComponentes/AppAninhados/AppAninhados'; // thank
 import registerServiceWorker from './registerServiceWorker';
 import Comment from './meusComponentes/Comment/Comment';
 import Toggle from './meusComponentes/HandleEvents/Toggle'
+import LoginControl from './meusComponentes/ConditionalRendering/LoginControl'
+import TemplateSaidaCondicional from './meusComponentes/ConditionalRendering/TemplateSaidaCondicional'
+import ListAndKeys from './meusComponentes/ListAndKeys/ListAndKeys'
+import Blog from './meusComponentes/ListAndKeys/Blog'
 
 function ComponenteEmLinha (props) {
   return <h1>Componente em linha my friend</h1>;
@@ -148,5 +152,20 @@ function AppClock() {
 }
 // ReactDOM.render(<AppClock />, document.getElementById('root'));
 
-ReactDOM.render(<Toggle />, document.getElementById('root'));
+// ReactDOM.render(<Toggle />, document.getElementById('root'));
+// registerServiceWorker();
+// ReactDOM.render(<LoginControl />, document.getElementById('root'));
+// registerServiceWorker();
+// ReactDOM.render(<TemplateSaidaCondicional />, document.getElementById('root'));
+// registerServiceWorker();
+
+// const numbers = [1, 3, 4, 5]
+// ReactDOM.render(<ListAndKeys numbers={numbers} />, document.getElementById('root'));
+// registerServiceWorker();
+
+const posts = [
+  {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+  {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+];
+ReactDOM.render(<Blog posts={posts} />, document.getElementById('root'));
 registerServiceWorker();

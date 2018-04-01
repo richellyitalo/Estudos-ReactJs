@@ -3,16 +3,30 @@ import React, { Component } from 'react'
 class Toggle extends Component {
   constructor(props) {
     super(props)
-    this.state = {isToggleOn: false, numero: 3}
+    this.state = {isToggleOn: false, numero: 3, parametro: 'Nenhum'}
+
+    // this.handleClickParam = this.handleClickParam.bind(this)
 
     // this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick() {
-    console.log(this)
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
     }))
+  }
+
+  handleClickThis() {
+    console.log('This is: ', this)
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }))
+  }
+
+  handleClickParam(param, event) {
+    this.setState({
+      parametro: param
+    })
   }
 
   mudarNumero(event, numero) {
@@ -29,6 +43,17 @@ class Toggle extends Component {
         <button onClick={(e) => this.handleClick(e)}>
           {this.state.isToggleOn ? 'ON' : 'OFF'}
         </button> */}
+        <p>
+          <button onClick={(e) => this.handleClickThis(e)}>
+          Button click this
+          </button>
+        </p>
+        <form>
+          <button type="submit" onClick={this.handleClickParam.bind(this, 'Jizâs')}>
+            Clique com parâmetro
+          </button>
+        </form>
+        <h3>{this.state.parametro}</h3>
 
         <button onClick={this.handleClick.bind(this)}>
           {this.state.isToggleOn ? 'ON' : 'OFF'}
