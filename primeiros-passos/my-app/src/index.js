@@ -12,6 +12,9 @@ import LoginControl from './meusComponentes/ConditionalRendering/LoginControl'
 import TemplateSaidaCondicional from './meusComponentes/ConditionalRendering/TemplateSaidaCondicional'
 import ListAndKeys from './meusComponentes/ListAndKeys/ListAndKeys'
 import Blog from './meusComponentes/ListAndKeys/Blog'
+import NameForm from './meusComponentes/Form/NameForm'
+import EssayForm from './meusComponentes/Form/EssayForm'
+import SelectForm from './meusComponentes/Form/SelectForm'
 
 function ComponenteEmLinha (props) {
   return <h1>Componente em linha my friend</h1>;
@@ -167,5 +170,11 @@ const posts = [
   {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
   {id: 2, title: 'Installation', content: 'You can install React from npm.'}
 ];
-ReactDOM.render(<Blog posts={posts} />, document.getElementById('root'));
+// ReactDOM.render(<Blog posts={posts} />, document.getElementById('root'));
+
+// # Forms
+// ReactDOM.render(<NameForm/>, document.getElementById('root'))
+// ReactDOM.render(<EssayForm/>, document.getElementById('root'))
+ReactDOM.render(<SelectForm/>, document.getElementById('root'))
+
 registerServiceWorker();
