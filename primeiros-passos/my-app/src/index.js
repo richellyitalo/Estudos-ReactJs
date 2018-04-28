@@ -15,6 +15,8 @@ import Blog from './meusComponentes/ListAndKeys/Blog'
 import NameForm from './meusComponentes/Form/NameForm'
 import EssayForm from './meusComponentes/Form/EssayForm'
 import SelectForm from './meusComponentes/Form/SelectForm'
+import ReservasForm from './meusComponentes/Form/ReservasForm'
+import Calculator from './meusComponentes/LiftingStateUp/Calculator'
 
 function ComponenteEmLinha (props) {
   return <h1>Componente em linha my friend</h1>;
@@ -175,6 +177,10 @@ const posts = [
 // # Forms
 // ReactDOM.render(<NameForm/>, document.getElementById('root'))
 // ReactDOM.render(<EssayForm/>, document.getElementById('root'))
-ReactDOM.render(<SelectForm/>, document.getElementById('root'))
+// ReactDOM.render(<SelectForm/>, document.getElementById('root'))
+// ReactDOM.render(<ReservasForm/>, document.getElementById('root'))
+
+// # Lifting state up
+ReactDOM.render(<Calculator/>, document.getElementById('root'))
 
 registerServiceWorker();
