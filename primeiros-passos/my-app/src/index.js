@@ -17,6 +17,10 @@ import EssayForm from './meusComponentes/Form/EssayForm'
 import SelectForm from './meusComponentes/Form/SelectForm'
 import ReservasForm from './meusComponentes/Form/ReservasForm'
 import Calculator from './meusComponentes/LiftingStateUp/Calculator'
+import CompositionVsInheritance from './meusComponentes/CompositionVsInheritance/Composition'
+import SplitPlane from './meusComponentes/CompositionVsInheritance/SplitPlane'
+import WelcomeDialog from './meusComponentes/CompositionVsInheritance/Specialization'
+import ThinkinReact from './meusComponentes/ThinkingReact/ThinkingReact'
 
 function ComponenteEmLinha (props) {
   return <h1>Componente em linha my friend</h1>;
@@ -181,6 +185,24 @@ const posts = [
 // ReactDOM.render(<ReservasForm/>, document.getElementById('root'))
 
 // # Lifting state up
-ReactDOM.render(<Calculator/>, document.getElementById('root'))
+// ReactDOM.render(<Calculator/>, document.getElementById('root'))
+
+// # Composition vs inheritance
+// ReactDOM.render(<CompositionVsInheritance />, document.getElementById('root'))
+// ReactDOM.render(<SplitPlane />, document.getElementById('root'))
+// ReactDOM.render(<WelcomeDialog />, document.getElementById('root'))
+
+// # ThinkinReact
+
+const produtos = [
+  {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
+  {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
+  {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
+  {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
+  {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
+  {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
+]
+
+ReactDOM.render(<ThinkinReact products={produtos} />, document.getElementById('root'))
 
 registerServiceWorker();
