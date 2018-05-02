@@ -5,6 +5,7 @@ import Header from '../../components/Header/header'
 import './layout.css'
 
 class Layout extends Component {
+  
   state = {
 
   };
