@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import SimpleSideNav from 'react-simple-sidenav';
 
-import SimpleSideNav from 'react-simple-sidenav'
+import SideNavItems from './sideNavItems'
 
 const SideNav = (props) => {
   return (
@@ -14,10 +15,10 @@ const SideNav = (props) => {
           color: '#a4a4a4'
         }}
       >
-      
+        <SideNavItems />
       </SimpleSideNav>
     </div>
-  )
+  );
 }
 
-export default SideNav
+export default SideNav;

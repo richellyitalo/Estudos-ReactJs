@@ -1,0 +1,21 @@
+.header {
+  background-color: #222;
+  border-bottom: #111;
+}
+
+.headerItem {
+  display: flex;
+}
+
+.logo {
+  flex-grow: 1;
+  padding-top: 8px;
+}
+  .logo img {
+    width: 35px;
+  }
+.bars {
+  padding: 10px;
+  color: #ddd;
+  cursor: pointer;
+}

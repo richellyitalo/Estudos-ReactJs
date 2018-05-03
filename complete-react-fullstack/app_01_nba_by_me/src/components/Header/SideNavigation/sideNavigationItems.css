@@ -1,0 +1,15 @@
+.option {
+  font-size: 13px;
+  font-weight: 500;
+  color: #aaa;
+  padding: 10px;
+  border-top: 1px solid #999;
+}
+
+.option svg {
+  margin-right: 10px;
+}
+
+.option a {
+  color: #aaa;
+}

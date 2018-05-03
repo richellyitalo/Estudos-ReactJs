@@ -1,0 +1,16 @@
+.option {
+  font-size: 12px;
+  font-weight: 500px;
+  padding: 11px;
+  border-top: 1px solid #444;
+  color: #ddd;
+}
+
+.option span {
+  margin-right: 10px; 
+}
+
+a {
+  text-decoration: none;
+  color: #ddd
+}
