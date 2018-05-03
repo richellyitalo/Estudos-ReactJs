@@ -1,8 +1,12 @@
 import React from 'react';
 
+import NewsSlider from '../Widgets/NewsSlider/newsSlider';
+
 const Home = () => {
   return (
-    <h1>Aqui é a HOME jão</h1>
+    <div>
+      <NewsSlider />
+    </div>
   );
 }
 
