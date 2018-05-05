@@ -1,0 +1,29 @@
+.sliderContainer {
+  overflow-x: hidden;
+}
+.featuredItem {
+  position: relative;
+}
+
+.featuredImage {
+  height: 330px;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+}
+
+.featuredItem a {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.featuredTitle {
+  color: #fff;
+  top: 0;
+  width: 100%;
+  padding: 20px;
+  font-size: 28px;
+  box-sizing: border-box;
+}

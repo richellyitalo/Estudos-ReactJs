@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import NewsSliderTemplate from './newsSliderTemplate';
+import  NewsSliderTemplate from './newsSliderTemplate';
 
 class NewsSlider extends Component {
 
@@ -12,7 +12,7 @@ class NewsSlider extends Component {
   constructor(props) {
     super(props);
 
-    axios.get('http://localhost:3004/articles?_start=0&_end=3')
+    axios.get(`http://localhost:3004/articles?_start=${props.start}&_end=${props.start + props.amount}`)
       .then(({ data }) => {
         this.setState({
           news: data
@@ -23,7 +23,11 @@ class NewsSlider extends Component {
 
   render() {
     return (
-      <NewsSliderTemplate data={this.state.news} />
+      <NewsSliderTemplate
+        data={this.state.news}
+        type={this.props.type}
+        settings={this.props.settings}
+      />
     );
   }
 }

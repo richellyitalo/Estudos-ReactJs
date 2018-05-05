@@ -1,0 +1,22 @@
+.sliderItem {
+  position: relative;
+}
+
+.sliderImage {
+  height: 330px;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+}
+
+.sliderTitle {
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.sliderTitle a {
+  text-decoration: none;
+  color: #fff;
+}
