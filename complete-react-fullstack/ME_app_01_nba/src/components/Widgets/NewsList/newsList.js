@@ -18,9 +18,13 @@ class NewsList extends Component {
       amount: props.amount
     }
 
-    axios.get(`${URL}/articles?_start=${this.state.start}&_end=${this.state.end}`)
+    this.request(this.state.start, this.state.end);
+
+  }
+
+  request = (start, end) => {
+    axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
       .then((response) => {
-        console.log(response);
         this.setState({
           items: [
             ...this.state.items,
@@ -28,16 +32,22 @@ class NewsList extends Component {
           ]
         })
       })
-
   }
 
-  renderNews = (type) => {  
+  loadMore = () => {
+    let newEnd = this.state.end + this.state.amount;
+    this.request(this.state.end, newEnd);
+  }
+
+  renderNews = (type) => {
     let template = null;
 
     switch(type) {
       case 'card':
         template = this.state.items.map((item, i) => (
-          <div className={styles.newsListItem}>
+          <div
+            key={i}
+            className={styles.newsListItem}>
             <h2>
               <Link to={`/articles/${item.id}`}>
                 {item.title}
@@ -55,7 +65,14 @@ class NewsList extends Component {
 
   render() {
     return (
-      <h1>{ this.renderNews() }</h1>
+      <div>
+        { this.renderNews(this.props.type) }
+        <div
+          className={styles.showMore}
+          onClick={() => this.loadMore()}>
+          Show More
+        </div>
+      </div>
     )
   }
 }
