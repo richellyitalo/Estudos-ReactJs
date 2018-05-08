@@ -1,0 +1,15 @@
+.cardInfo {
+  margin: 10px 0 5px;
+}
+
+.cardInfoTeam {
+  padding: 2px 5px;
+  background: #aaa;
+  color: #fff;
+}
+
+.cardInfoDate {
+  font-size: 12px;
+  color: #555;
+  margin-left: 10px;
+}

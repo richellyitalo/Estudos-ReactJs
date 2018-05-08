@@ -1,0 +1,10 @@
+.buttonBlue {
+    background-color: #223399;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+}

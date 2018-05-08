@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { URL } from '../../../config';
+import Button from '../Buttons/buttons';
 
 import styles from './newsList.css';
+import CardInfo from '../CardInfo/cardInfo';
 
 class NewsList extends Component {
 
@@ -12,6 +15,7 @@ class NewsList extends Component {
     super(props);
 
     this.state = {
+      teams: [],
       items: [],
       start: props.start,
       end: props.start + props.amount,
@@ -19,7 +23,16 @@ class NewsList extends Component {
     }
 
     this.request(this.state.start, this.state.end);
+    this.fetchTeams();
+  }
 
+  fetchTeams = () => {
+    axios.get(`${URL}/teams`)
+      .then((response) => {
+        this.setState({
+          teams: response.data
+        })
+      })
   }
 
   request = (start, end) => {
@@ -45,15 +58,28 @@ class NewsList extends Component {
     switch(type) {
       case 'card':
         template = this.state.items.map((item, i) => (
-          <div
+          <CSSTransition
             key={i}
-            className={styles.newsListItem}>
-            <h2>
-              <Link to={`/articles/${item.id}`}>
-                {item.title}
-              </Link>
-            </h2>
-          </div>
+            timeout={500}
+            classNames={{
+              enter: styles.newsListWrapper,
+              enterActive: styles.newsListWrapperEnter
+            }}
+          >
+            <div
+              className={styles.newsListItem}>
+              <h2>
+                <Link to={`/articles/${item.id}`}>
+                  <CardInfo
+                    teams={this.state.teams}
+                    team={item.team}
+                    date={item.date}
+                  />
+                  {item.title}
+                </Link>
+              </h2>
+            </div>
+          </CSSTransition>
         ));
         break;
       default:
@@ -66,12 +92,14 @@ class NewsList extends Component {
   render() {
     return (
       <div>
-        { this.renderNews(this.props.type) }
-        <div
-          className={styles.showMore}
-          onClick={() => this.loadMore()}>
-          Show More
-        </div>
+        <TransitionGroup>
+          { this.renderNews(this.props.type) }
+        </TransitionGroup>
+        <Button
+          type={"loadMore"}
+          loadMore={() => this.loadMore()}
+          text={"Show More News"}
+        />
       </div>
     )
   }
