@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { URL } from '../../../config';
 import Button from '../Buttons/buttons';
+import CardInfo from '../CardInfo/cardInfo';
 
 import styles from './newsList.css';
 
@@ -15,12 +16,14 @@ class NewsList extends Component {
     
     this.state = {
       items: [],
+      teams: [],
       start: props.start,
       end: props.start + props.amount,
       amount: props.amount
     }
 
     this.request(this.state.start, this.state.end);
+    this.fetchTeams();
   }
 
   request = (start, end) => {
@@ -29,8 +32,19 @@ class NewsList extends Component {
         this.setState({
           items: [
             ...this.state.items,
-            ...result.data
-          ]
+            ...result.data,
+          ],
+          start,
+          end
+        })
+      });
+  }
+
+  fetchTeams = () => {
+    axios.get(`${URL}/teams`)
+      .then((result) => {
+        this.setState({
+          teams: result.data
         })
       });
   }
@@ -56,6 +70,11 @@ class NewsList extends Component {
           >
             <div>
               <div className={styles.newsListItem}>
+                <CardInfo
+                  teams={this.state.teams}
+                  team={item.team}
+                  date={item.date}
+                />
                 <Link to={`/articles/${item.id}`}>
                   {item.title}
                 </Link>

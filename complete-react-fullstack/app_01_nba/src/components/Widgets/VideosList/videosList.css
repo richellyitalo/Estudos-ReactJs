@@ -1,0 +1,9 @@
+.videosListWrapper h3 {
+  color: #333;
+  background: #ccc;
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}

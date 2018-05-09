@@ -25,7 +25,7 @@ const Header = (props) => {
 
   const logo = () => (
     <Link
-      to="/home"
+      to="/"
       className={style.logo}>
       <img alt="NBA Logo" src="/images/nba_logo.png" />
     </Link>

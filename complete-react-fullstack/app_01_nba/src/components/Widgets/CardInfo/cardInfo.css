@@ -1,0 +1,15 @@
+.cardInfoItem {
+  font-size: 12px;
+  margin: 5px 0 10px;
+}
+
+.cardInfoTeam {
+  padding: 3px;
+  background-color: #ddd;
+  color: #777;
+}
+
+.cardInfoDate {
+  float: right;
+  color: #d3d3d3;
+}
