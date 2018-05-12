@@ -25,7 +25,7 @@ const NewsSliderTemplate = (props) => {
             <div
               className={styles.featuredImage}
               style={{
-                background: `url(../images/articles/${item.id}.jpg`
+                background: `url(../images/articles/${item.image}`
               }}
             >
             </div>

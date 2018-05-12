@@ -1,0 +1,22 @@
+.videoListWrapper {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+}
+
+.left {
+  float: left;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+}
+
+.left div {
+  width: 100px;
+  height: 100px;
+  background: transparent url('/images/play.png') center center no-repeat !important;
+
+}
+
+.right {
+  flex-grow: 1;
+  padding: 10px;
+}

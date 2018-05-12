@@ -1,2 +1,0 @@
-# estudosreact
-Estudos sobre react

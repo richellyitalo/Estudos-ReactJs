@@ -4,4 +4,6 @@
   text-align: center;
   color: #ddd;
   background-color: #215591;
+  display: block;
+  cursor: pointer;
 }

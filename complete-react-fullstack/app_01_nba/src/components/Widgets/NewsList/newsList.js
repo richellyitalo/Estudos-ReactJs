@@ -83,6 +83,37 @@ class NewsList extends Component {
           </CSSTransition>
         ));
         break;
+      case 'cardMain':
+        template = this.state.items.map((item, i) => (
+          <CSSTransition
+            key={i}
+            classNames={{
+              enter: styles.newsListWrapper,
+              enterActive: styles.newsListWrapperEnter
+            }}
+            timeout={500}
+          >
+            <Link to={`/articles/${item.id}`}>
+              <div className={styles.flex_wrapper}>
+                <div className={styles.left}
+                  style={{
+                    background: `url(/images/articles/${item.image})`
+                  }}>
+                  <div></div>
+                </div>
+                <div className={styles.right}>
+                  <CardInfo
+                    teams={this.state.teams}
+                    team={item.team}
+                    date={item.date}
+                  />
+                  <h2>{item.title}</h2>
+                </div>
+              </div>
+            </Link>
+          </CSSTransition>
+        ));
+        break;
       default:
         template = null;
     }
@@ -99,7 +130,7 @@ class NewsList extends Component {
           { this.renderNews(this.props.type) }
         </TransitionGroup>
         <Button
-          type="loadMore"
+          type="cardMain"
           loadMore={() => this.loadMore()}
           text={"Load More News"}
         />

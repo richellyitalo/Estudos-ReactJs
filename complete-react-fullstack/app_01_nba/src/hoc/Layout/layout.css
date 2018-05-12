@@ -2,6 +2,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Roboto Mono', monospace;
+  background: #eee;
 }
 a {
   text-decoration: none;

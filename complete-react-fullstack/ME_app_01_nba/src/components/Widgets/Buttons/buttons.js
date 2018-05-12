@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './buttons.css';
 
@@ -13,6 +14,16 @@ const Buttons = (props) => {
           onClick={props.loadMore}>
           {props.text}
         </div>
+      )
+      break;
+    case 'link':
+      template = (
+        <Link
+          className={styles.buttonBlue}
+          to={props.linkTo}
+        >
+          {props.text}
+        </Link>
       )
       break;
     default:
