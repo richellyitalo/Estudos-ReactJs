@@ -9,11 +9,12 @@ import promiseMiddleware from 'redux-promise';
 
 import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
+const storeWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
+
 
 const App = () => {
     return(
-        <Provider store={createStoreWithMiddleware(reducers)}>
+        <Provider store={storeWithMiddleware(reducers)}>
             <BrowserRouter>
                 <Routes/>
             </BrowserRouter>
