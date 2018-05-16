@@ -11,7 +11,6 @@ import reducers from './reducers';
 
 const storeWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
 
-
 const App = () => {
     return(
         <Provider store={storeWithMiddleware(reducers)}>

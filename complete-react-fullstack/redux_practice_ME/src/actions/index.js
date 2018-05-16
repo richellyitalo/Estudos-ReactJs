@@ -10,3 +10,30 @@ export function artistList () {
     payload: request
   }
 }
+
+export function artist(key) {
+  const request = axios.get(`${URL}/artists?q=${key}`)
+    .then(response => response.data);
+
+  return {
+    type: 'GET_ARTISTS',
+    payload: request
+  };
+}
+
+export function artistDetail(id) {
+  const request = axios.get(`${URL}/artists/${id}`)
+    .then(response => response.data);
+
+  return {
+    type: 'GET_ARTIST_DETAIL',
+    payload: request
+  };
+}
+
+export function clearArtistDetail() {
+  return {
+    type: 'CLEAR_ARTIST_DETAIL',
+    payload: null
+  }
+}
