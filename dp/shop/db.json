@@ -1,0 +1,61 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "categoria": 1,
+      "produto": "Metal Gear Solid"
+    },
+    {
+      "id": 4,
+      "categoria": 2,
+      "produto": "Outlast"
+    },
+    {
+      "categoria": "3",
+      "produto": "Sem nome",
+      "id": 9
+    },
+    {
+      "categoria": "1",
+      "produto": "Syphon Filter",
+      "id": 11
+    },
+    {
+      "categoria": "1",
+      "produto": "Street Fighter",
+      "id": 12
+    },
+    {
+      "categoria": "5",
+      "produto": "Não sei 2",
+      "id": 14
+    },
+    {
+      "categoria": "1",
+      "produto": "Onimusha",
+      "id": 15
+    }
+  ],
+  "categorias": [
+    {
+      "categoria": "Ação",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "categoria": "Testando"
+    },
+    {
+      "id": 3,
+      "categoria": "Nova "
+    },
+    {
+      "categoria": "Outros tipos",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "categoria": "Categoria Teste"
+    }
+  ]
+}
