@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const Header = (props) => {
   // DISTRUCTURING
@@ -14,9 +15,19 @@ const Header = (props) => {
         <div>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a href="/" className="nav-link">
+              <Link to="/" className="nav-link">
                 Home
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/novo-contato" className="nav-link">
+                Novo Contato
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/sobre" className="nav-link">
+                Sobre
+              </Link>
             </li>
           </ul>
         </div>
