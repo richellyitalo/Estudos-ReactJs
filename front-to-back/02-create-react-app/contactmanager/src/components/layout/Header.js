@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const Header = (props) => {
+const Header = props => {
   // DISTRUCTURING
   const { branding } = props
 
@@ -28,6 +28,15 @@ const Header = (props) => {
               <Link to="/sobre" className="nav-link">
                 Sobre
               </Link>
+            </li>
+            <li>
+              <small>
+                by
+                <a href="https://twitter.com/richellyitalo" target="_blank">
+                  <i className="fa fa-twitter"></i>
+                  @richellyitalo
+                </a>
+              </small>
             </li>
           </ul>
         </div>
