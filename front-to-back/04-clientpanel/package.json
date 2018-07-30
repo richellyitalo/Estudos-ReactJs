@@ -1,5 +1,5 @@
 {
-  "name": "04-clientpanel",
+  "name": "fronttoback-clientpanel",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
