@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Footer from '../elements/footer/Footer'
 import Loading from '../elements/loading/Loading'
 

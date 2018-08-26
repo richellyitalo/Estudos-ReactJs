@@ -1,5 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { http } from '../../helpers'
 
-const Painel = () => <h1>Painel</h1>
+class Painel extends Component {
+  componentDidMount() {
+    http.get('jao')
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Painel</h1>
+        <Link to="/login">Login</Link>
+      </div>
+    )
+  }
+}
 
 export default Painel

@@ -1,12 +1,27 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+
+import { Link } from 'react-router-dom'
 import { loginUser } from '../../store/actions/authAction'
+import { http } from '../../helpers'
 
 class Login extends Component {
   state = {
     email: '',
     password: ''
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/')
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/')
+    }
   }
 
   onSubmit = e => {
@@ -25,7 +40,6 @@ class Login extends Component {
     return (
       <div className="col-6 mx-auto">
         {JSON.stringify(this.props.auth)}
-        {JSON.stringify(this.state)}
         <form className="form" onSubmit={this.onSubmit}>
           <div className="form-group">
             <input
@@ -57,13 +71,11 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  auth: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  isLoading: state.common.isLoading
+  auth: state.auth
 })
 
 export default connect(

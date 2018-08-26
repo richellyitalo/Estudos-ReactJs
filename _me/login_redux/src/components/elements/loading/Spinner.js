@@ -1,9 +1,12 @@
 import React from 'react'
+
 import loadingImage from './loading.gif'
 
 export default () => (
   <div style={style}>
-    <img src={loadingImage} />
+    {/* ou pode ser usado com 'require()' */}
+    {/* <img src={require('./loading.gif')} /> */}
+    <img src={loadingImage} alt="" />
   </div>
 )
 

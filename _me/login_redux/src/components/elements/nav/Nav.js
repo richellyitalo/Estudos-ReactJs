@@ -1,6 +1,15 @@
 import React from 'react'
 
+import store from '../../../store'
+import { logoutUser  } from '../../../store/actions/authAction'
+
 const Nav = () => {
+  const onClickLogout = e => {
+    e.preventDefault()
+
+    store.dispatch(logoutUser())
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="#">
@@ -26,8 +35,8 @@ const Nav = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Outro link
+            <a className="nav-link" href="" onClick={onClickLogout}>
+              Deslogar
             </a>
           </li>
         </ul>

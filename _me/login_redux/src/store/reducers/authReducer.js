@@ -2,17 +2,17 @@ import { isEmpty } from '../../helpers'
 import { SET_USER } from '../types'
 
 const initialState = {
-  isAuthenticated: false
+  isAuthenticated: false,
+  user: {}
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
-      console.log('Setou usuário')
-      
       return {
         ...state,
-        isAuthenticated: !isEmpty(action.payload)
+        isAuthenticated: !isEmpty(action.payload),
+        user: action.payload
       }
     default:
       return state
