@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { clearAlert } from '../../store/actions/commonActions'
 
 class Alert extends Component {
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
     if (this.props.alert.message !== '') {
       setTimeout(this.props.clearAlert, 4000)
     }

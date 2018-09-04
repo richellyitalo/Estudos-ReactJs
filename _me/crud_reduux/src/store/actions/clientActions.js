@@ -1,9 +1,11 @@
 import http from '../../services/http'
 
 import { ADD_CLIENT, FETCH_CLIENTS } from '../types'
-import { setAlert } from './commonActions'
+import { setAlert, setLoading } from './commonActions'
 
 export const addClient = (clientData, history) => dispatch => {
+  // dispatch(setLoading())
+
   http.post('/admin/clients', clientData).then(res => {
     dispatch({
       type: ADD_CLIENT,
@@ -11,6 +13,8 @@ export const addClient = (clientData, history) => dispatch => {
     })
 
     dispatch(setAlert('Cadastro realizado com sucesso!', 'success'))
+
+    // dispatch(setLoading(false))
 
     history.push('/')
   })

@@ -6,3 +6,7 @@ export const FETCH_CLIENTS = 'FETCH_CLIENTS'
 
 export const SET_ALERT = 'SET_ALERT'
 export const CLEAR_ALERT = 'CLEAR_ALERT'
+
+export const SET_LOADING = 'SET_LOADING'
+
+export const SET_ERRORS = 'SET_ERRORS'

@@ -39,7 +39,7 @@ class ClientList extends Component {
           Clientes Cadastrados <span className="badge" />
         </h2>
         <div className="row">
-          <div className="col-10 mx-auto">
+          <div className="col-12 mx-auto">
             <table className="table table-striped table-bordered">
               <thead>
                 <tr>
@@ -52,38 +52,38 @@ class ClientList extends Component {
                 </tr>
               </thead>
               <tbody>
-                {clients
-                  ? clients.map(client => (
-                      <tr key={client.id}>
-                        <td>{client.name}</td>
-                        <td>{client.cpf}</td>
-                        <td>{client.email}</td>
-                        <td>{client.mobile_phone}</td>
-                        <td>{dateReadable(client.created_at)}</td>
-                        <td>
-                          <a href="" className="btn btn-sm btn-info">
-                            Editar
-                          </a>{' '}
-                          <a href="" className="btn btn-sm btn-danger">
-                            Excluir
-                          </a>
-                        </td>
-                      </tr>
-                    ))
-                  : null}
+                {clients.map(client => (
+                  <tr key={client.id}>
+                    <td>{client.name}</td>
+                    <td>{client.cpf}</td>
+                    <td>{client.email}</td>
+                    <td>{client.mobile_phone}</td>
+                    <td>{dateReadable(client.created_at)}</td>
+                    <td>
+                      <a href="" className="btn btn-sm btn-info">
+                        Editar
+                      </a>{' '}
+                      <a href="" className="btn btn-sm btn-danger">
+                        Excluir
+                      </a>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
-            <nav className="navigation">
-              <Pagination
-                activePage={current_page}
-                itemsCountPerPage={per_page}
-                totalItemsCount={total}
-                pageRangeDisplayed={5}
-                onChange={this.handlePageChange}
-                itemClass={'page-item'}
-                linkClass={'page-link'}
-              />
-            </nav>
+            <div className="d-flex">
+              <nav className="navigation mx-auto">
+                <Pagination
+                  activePage={current_page}
+                  itemsCountPerPage={per_page}
+                  totalItemsCount={total}
+                  pageRangeDisplayed={5}
+                  onChange={this.handlePageChange}
+                  itemClass={'page-item'}
+                  linkClass={'page-link'}
+                />
+              </nav>
+            </div>
           </div>
         </div>
       </Fragment>

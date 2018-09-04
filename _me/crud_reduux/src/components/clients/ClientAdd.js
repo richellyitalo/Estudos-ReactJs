@@ -66,28 +66,11 @@ class ClientAdd extends Component {
       city_id
     } = this.state
 
-    const { states, cities } = this.props
+    const { states, cities, isLoading } = this.props
 
     return (
       <React.Fragment>
         <h2 className="text-center">Novo Cliente</h2>
-        {/* <button
-          className="btn btn-info btn-sm"
-          onClick={() =>
-            this.props.setAlert('Mensagem' + new Date().getTime(), 'warning')
-          }
-        >
-          Testar alert
-        </button>
-        {' '}
-        <button
-          className="btn btn-warning btn-sm"
-          onClick={() =>
-            this.props.clearAlert()
-          }
-        >
-          Limpar
-        </button> */}
         <div className="row">
           <form className="col-8 mx-auto" onSubmit={this.onSubmit}>
             <FormInputText
@@ -185,7 +168,9 @@ class ClientAdd extends Component {
             <div className="form-group row">
               <div className="col-3" />
               <div className="col-3">
-                <button className="btn btn-success">Cadastrar Cliente</button>
+                <button className="btn btn-success" disabled={isLoading}>
+                  Cadastrar Cliente
+                </button>
               </div>
             </div>
           </form>
@@ -197,12 +182,14 @@ class ClientAdd extends Component {
 
 const mapStateToProps = state => ({
   states: state.commons.states,
-  cities: state.commons.cities
+  cities: state.commons.cities,
+  isLoading: state.commons.isLoading
 })
 
 ClientAdd.propTypes = {
   states: PropTypes.array.isRequired,
-  cities: PropTypes.array.isRequired
+  cities: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired
 }
 
 export default connect(
