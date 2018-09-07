@@ -5,6 +5,7 @@ import registerServiceWorker from './registerServiceWorker'
 import $ from 'jquery'
 import 'bootstrap/scss/_utilities.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'antd/dist/antd.css';
 
 // Bootstrap start
 window.jQuery = $

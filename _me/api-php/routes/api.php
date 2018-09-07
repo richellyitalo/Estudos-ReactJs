@@ -24,4 +24,7 @@ $this->get('cities/{state}', 'Admin\CitiesController@index');
 $this->group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     $this->get('clients', 'ClientsController@index');
     $this->post('clients', 'ClientsController@store');
+    $this->get('clients/{id}', 'ClientsController@edit');
+    $this->put('clients/{id}', 'ClientsController@update');
+    $this->delete('clients/{id}', 'ClientsController@destroy');
 });

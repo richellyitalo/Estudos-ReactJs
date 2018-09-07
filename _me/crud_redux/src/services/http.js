@@ -4,7 +4,7 @@ import store from '../store'
 import { setLoading, setErrors } from '../store/actions/commonActions'
 
 const http = axios.create({
-  baseURL: 'http://localhost:8000/api/'
+  baseURL: 'http://laravel-api.richellyitalo.com/api/'
 })
 
 http.interceptors.request.use(
@@ -30,11 +30,20 @@ http.interceptors.response.use(
     return response
   },
   error => {
+    const { response } = error
     store.dispatch(setLoading(false))
+    
+    if (!response) {
+      store.dispatch(setErrors(['Servidor não respondeu']))
 
-    if (error.response.status === 400) {
+      return Promise.reject(error)
+    }
+
+    if (response.status > 400) {
       // store.dispatch(setErrors(error.response.data))
-      store.dispatch(setErrors(['deu ruim', 'nome doido']))
+      const message = response.data.message ? response.data.message : response.statusText
+
+      store.dispatch(setErrors([message]))
     }
 
     return Promise.reject(error)

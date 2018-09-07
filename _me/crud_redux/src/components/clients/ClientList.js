@@ -1,17 +1,24 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Pagination from 'react-js-pagination'
+import { Popconfirm } from 'antd'
 // require("bootstrap/less/bootstrap.less")
 
-import { fetchClients } from '../../store/actions/clientActions'
+import { fetchClients, deleteClient } from '../../store/actions/clientActions'
 import { dateReadable } from '../../helpers'
 
 class ClientList extends Component {
   componentDidMount() {
     this.props.fetchClients(this.props.match.params.page)
+
+    // window.addEventListener('resize', this.handleResize)
   }
+
+  // handleResize = event => {
+  //   console.log(event)
+  // }
 
   handlePageChange = pageNumber => {
     this.props.history.push('/' + pageNumber)
@@ -25,6 +32,10 @@ class ClientList extends Component {
     if (prevProps.match.params.page !== page) {
       this.props.fetchClients(page)
     }
+  }
+
+  onConfirmDelete = id => {
+    this.props.deleteClient(id)
   }
 
   render() {
@@ -47,6 +58,7 @@ class ClientList extends Component {
                   <th>CPF</th>
                   <th>E-mail</th>
                   <th>Telefone</th>
+                  <th>UF/Cidade</th>
                   <th>Data de cadastro</th>
                   <th />
                 </tr>
@@ -58,14 +70,27 @@ class ClientList extends Component {
                     <td>{client.cpf}</td>
                     <td>{client.email}</td>
                     <td>{client.mobile_phone}</td>
+                    <td>
+                      {client.city.state.initials}/{client.city.city}
+                    </td>
                     <td>{dateReadable(client.created_at)}</td>
                     <td>
-                      <a href="" className="btn btn-sm btn-info">
+                      <Link
+                        to={`/edit/${client.id}`}
+                        className="btn btn-sm btn-info"
+                      >
                         Editar
-                      </a>{' '}
-                      <a href="" className="btn btn-sm btn-danger">
-                        Excluir
-                      </a>
+                      </Link>{' '}
+                      <Popconfirm
+                        title="Deseja mesmo excluir esse Cliente?"
+                        onConfirm={this.onConfirmDelete.bind(this, client.id)}
+                        okText="Sim"
+                        cancelText="Não"
+                      >
+                        <a href="" className="btn btn-sm btn-danger">
+                          Excluir
+                        </a>
+                      </Popconfirm>
                     </td>
                   </tr>
                 ))}
@@ -101,5 +126,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchClients }
+  { fetchClients, deleteClient }
 )(withRouter(ClientList))

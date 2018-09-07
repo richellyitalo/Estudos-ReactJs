@@ -1,4 +1,4 @@
-import { ADD_CLIENT, FETCH_CLIENTS } from '../types'
+import { ADD_CLIENT, FETCH_CLIENTS, SET_CLIENT } from '../types'
 
 const initialState = {
   clients: [],
@@ -21,6 +21,11 @@ export default (state = initialState, action) => {
         ...state,
         clients,
         pagination
+      }
+    case SET_CLIENT:
+      return {
+        ...state,
+        client: action.payload
       }
     default:
       return state

@@ -16,7 +16,9 @@ class ClientsController extends Controller
      */
     public function index(Client $client)
     {
-        return response($client->orderBy('name')->paginate(4));
+        $clients = $client->with('city.state')->orderBy('name')->paginate(4);
+
+        return response($clients);
     }
 
     /**
@@ -42,6 +44,8 @@ class ClientsController extends Controller
         $dataClient = $request->all() + ['code' => str_random(5)];
         $client = $client->create($dataClient);
         
+        $client = $client->with('city.state')->find($client->id);
+        
         return response($client);
     }
 
@@ -62,9 +66,11 @@ class ClientsController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Client $client, $id)
     {
-        //
+        $client = $client->with('city')->findOrFail($id);
+
+        return response($client);
     }
 
     /**
@@ -74,9 +80,17 @@ class ClientsController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Client $client, $id)
     {
-        //
+        $client
+            ->findOrFail($id)
+            ->update($request->all());
+        
+        $client = $client
+            ->with('city.state')
+            ->find($client->id);
+
+        return response($client);
     }
 
     /**
@@ -85,8 +99,8 @@ class ClientsController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Client $client, $id)
     {
-        //
+        return response($client->destroy($id));
     }
 }
