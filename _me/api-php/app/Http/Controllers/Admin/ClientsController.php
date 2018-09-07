@@ -34,6 +34,7 @@ class ClientsController extends Controller
             'cpf' => 'required|unique:clients',
             'email' => 'required|email',
             'mobile_phone' => 'required',
+            'city_id' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
 
@@ -82,6 +83,19 @@ class ClientsController extends Controller
      */
     public function update(Request $request, Client $client, $id)
     {
+        $rules = [
+            'name' => 'required',
+            'cpf' => 'required|unique:clients',
+            'email' => 'required|email',
+            'mobile_phone' => 'required',
+            'city_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+        
         $client
             ->findOrFail($id)
             ->update($request->all());
