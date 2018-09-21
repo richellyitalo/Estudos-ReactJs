@@ -110,7 +110,7 @@ class ClientAdd extends Component {
               label="CEP"
               name="cep"
               type="text"
-              value={cep}
+              value={cep} 
               col={3}
               onChange={this.onChange}
             />
