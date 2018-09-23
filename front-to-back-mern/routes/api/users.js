@@ -17,7 +17,7 @@ router.get('/test', (req, res) => res.json({ msg: 'User works!' }));
 // @route   POST api/users/register
 // @desc    Register a new user
 // @access  Public
-router.get('/register', (req, res) => {
+router.post('/register', (req, res) => {
   // 0 - Validação de dados
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
