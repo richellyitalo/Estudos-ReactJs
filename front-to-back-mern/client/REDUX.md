@@ -93,10 +93,25 @@ export const registerUser = userData => {
 export const SET_USER = 'SET_USER';
 ```
 
+## *reducers/authReducer.js*
+Configuração tipo de ação no reducer
+```js
+import { SET_USER } from '../actions/types'
+// ...
+switch (action.type) {
+  case SET_USER:
+    return {
+      ...state,
+      user: action.payload
+    }
+  // ...
+}
+```
+
 ## *components/auth/Register.js*
 Conectando a ação ao componente
 ```js
-// Importaação para o componente
+// Importação para o componente
 import { registerUser } from '../../actions/authActions';
 
 // conecta ele ao componente
