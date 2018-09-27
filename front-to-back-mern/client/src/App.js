@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 
@@ -9,10 +9,14 @@ import Landing from './components/layout/Landing'
 import Footer from './components/layout/Footer'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import Dashboard from './components/dashboard/Dashboard'
+import PrivateRoute from './components/common/PrivateRoute'
+import CreateProfile from './components/create-profile/CreateProfile';
 
 // Load store e actions
 import store from './store'
 import { setCurrentUser, logoutUser } from './actions/authActions'
+import { clearCurrentProfile } from './actions/profileActions'
 
 // Utilidades
 import setAuthToken from './utils/setAuthToken'
@@ -20,7 +24,7 @@ import setAuthToken from './utils/setAuthToken'
 // Estilos
 import './App.css'
 
-// Lógica no boot
+// Lógica de autenticação no boot
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken
   // Define os headers
@@ -33,8 +37,8 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser());
-    // TODO: limpar perfil atual
-
+    // Limpar perfil atual
+    store.dispatch(clearCurrentProfile())
     // Redireciona para login
     window.location.href = '/login'
   }
@@ -54,6 +58,14 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               {/* ~ Login */}
               <Route exact path="/login" component={Login} />
+              <Switch>
+                {/* ~ Dashboard */}
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                {/* ~ Dashboard */}
+                <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+              </Switch>
             </div>
             <Footer />
           </div>

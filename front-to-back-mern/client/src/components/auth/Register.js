@@ -7,6 +7,9 @@ import { withRouter } from 'react-router-dom'
 // Carregando actions
 import { registerUser } from '../../actions/authActions'
 
+// Componentes
+import TextFieldGroup from '../common/TextFieldGroup'
+
 class Register extends Component {
   state = {
     name: '',
@@ -55,40 +58,31 @@ class Register extends Component {
               <h1 className="display-4 text-center">Inscrição</h1>
               <p className="lead text-center">Crie sua conta</p>
               <form onSubmit={this.onSubmit} noValidate autoComplete="off">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.name
-                    })}
-                    placeholder="Name"
-                    name="name"
-                    onChange={this.onChange}
-                    value={this.state.name}
-                  />
-                  {errors.name && (
-                    <div className="invalid-feedback">{errors.name}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.email
-                    })}
-                    placeholder="Email Address"
-                    name="email"
-                    onChange={this.onChange}
-                    value={this.state.email}
-                  />
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )}
-                  <small className="form-text text-muted">
-                    Este site usa o Gravatar, então se você quiser uma imagem de
-                    perfil, use um email do Gravatar
-                  </small>
-                </div>
+                <TextFieldGroup
+                  type="text"
+                  placeholder="Nome"
+                  name="name"
+                  onChange={this.onChange}
+                  value={this.state.name}
+                  error={errors.name}
+                />
+                <TextFieldGroup
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  info="Este site usa o Gravatar, então se você quiser uma imagem de perfil, use um email do Gravatar"
+                />
+                <TextFieldGroup
+                  type="text"
+                  placeholder="Nome"
+                  name="name"
+                  onChange={this.onChange}
+                  value={this.state.name}
+                  error={errors.name}
+                />
                 <div className="form-group">
                   <input
                     type="password"
