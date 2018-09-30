@@ -3,6 +3,7 @@ import axios from 'axios'
 // Types
 import {
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
@@ -109,6 +110,48 @@ export const createProfile = (profileData, history) => dispatch => {
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
+      })
+    )
+}
+
+// get all profiles
+export const getProfiles = () => dispatch => {
+  dispatch(setProfileLoading())
+  // GET pegar todos os usuarios
+  axios
+    .get('/api/profile/all')
+    .then(res => {
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data
+      })
+    })
+    // Se não encontrou define como vazio (null)
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: null
+      })
+    )
+}
+
+// get profile by handle
+export const getProfileByHandle = handle => dispatch => {
+  dispatch(setProfileLoading())
+  // GET pega perfil pelo handle
+  axios
+    .get(`/api/profile/handle/${handle}`)
+    .then(res => {
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    })
+    // Se não encontrou define como vazio (null)
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: null
       })
     )
 }

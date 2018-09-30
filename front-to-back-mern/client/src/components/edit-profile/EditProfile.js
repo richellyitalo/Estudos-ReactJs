@@ -130,6 +130,7 @@ class EditProfile extends Component {
     if (displaySocialInputs) {
       socialInputs = (
         <div>
+
           <InputGroup
             name="twitter"
             onChange={this.onChange}

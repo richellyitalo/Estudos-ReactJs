@@ -15,6 +15,9 @@ import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
 import AddExperience from './components/add-credentials/AddExperience'
 import AddEducation from './components/add-credentials/AddEducation'
+import Profiles from './components/profiles/Profiles'
+import Profile from './components/profile/Profile'
+import NotFound from './components/not-found/NotFound'
 
 // Load store e actions
 import store from './store'
@@ -61,6 +64,10 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               {/* ~ Login */}
               <Route exact path="/login" component={Login} />
+              {/* ~ Profiles*/}
+              <Route exact path="/profiles" component={Profiles} />
+              {/* ~ Dados do perfil*/}
+              <Route exact path="/profile/:handle" component={Profile} />
               <Switch>
                 {/* ~ Dashboard */}
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
@@ -97,6 +104,7 @@ class App extends Component {
                   component={AddEducation}
                 />
               </Switch>
+              <Route exact path="/not-found" component={NotFound} />
             </div>
             <Footer />
           </div>
