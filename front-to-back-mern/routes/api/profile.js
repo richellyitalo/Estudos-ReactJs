@@ -59,10 +59,12 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if (body.status) profileFields.status = body.status;
   if (body.bio) profileFields.bio = body.bio;
   if (body.githubusername) profileFields.githubusername = body.githubusername;
+
   // Skills
-  if (typeof body.skills !== 'undefined'){
+  if (typeof body.skills !== 'undefined') {
     profileFields.skills = body.skills.split(',');
-  } 
+  }
+
   // Social
   profileFields.social = {};
   if (body.youtube) profileFields.social.youtube = body.youtube;
@@ -70,7 +72,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if (body.facebook) profileFields.social.facebook = body.facebook;
   if (body.linkedin) profileFields.social.linkedin = body.linkedin;
   if (body.instagram) profileFields.social.instagram = body.instagram;
-
+  
   // 2 - Pesquisa profile
   Profile.findOne({ user: req.user.id })
     .populate('user', ['name', 'avatar'])
@@ -94,7 +96,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
               res.status(400).json(errors);
             }
 
-            // Cria o profile
+            // 3 - Se não existir, cria
             new Profile(profileFields)
               .save()
               .then(profile => res.json(profile));
@@ -102,7 +104,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 
       }
     })
-  // 3 - Se não existir, cria
 });
 
 // @route   GET api/profile/handle/:handle

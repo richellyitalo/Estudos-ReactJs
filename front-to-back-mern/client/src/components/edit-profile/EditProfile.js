@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 
+// Helpers
+import isEmpty from '../../validation/is-empty'
+
 // Componentes auxiliares
 import TextFieldGroup from '../common/TextFieldGroup'
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
@@ -10,9 +13,9 @@ import SelectListGroup from '../common/SelectListGroup'
 import InputGroup from '../common/InputGroup'
 
 // Ações
-import { createProfile } from '../../actions/profileActions'
+import { createProfile, getCurrentProfile } from '../../actions/profileActions'
 
-class CreateProfile extends Component {
+class EditProfile extends Component {
   state = {
     displaySocialInputs: false,
     handle: '',
@@ -57,9 +60,52 @@ class CreateProfile extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
+    }
+
+    // Set status principal
+    if (nextProps.profile.profile) {
+      const profile = nextProps.profile.profile
+
+      // Skills CSV
+      const skillsCSV = profile.skills.join(',')
+
+      profile.company = !isEmpty(profile.company) ? profile.company : ''
+      profile.website = !isEmpty(profile.website) ? profile.website : ''
+      profile.location = !isEmpty(profile.location) ? profile.location : ''
+      profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername : ''
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : ''
+
+      // Social
+      profile.social = !isEmpty(profile.social) ? profile.social : {}
+      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : ''
+      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : ''
+      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : ''
+      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : ''
+      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : ''
+
+      this.setState({
+        displaySocialInputs: !isEmpty(profile.social),
+        handle: profile.handle,
+        status: profile.status,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        skills: skillsCSV,
+        githubusername: profile.githubusername,
+        bio: profile.bio,
+        twitter: profile.twitter,
+        facebook: profile.facebook,
+        linkedin: profile.linkedin,
+        youtube: profile.youtube,
+        instagram: profile.instagram
+      })
     }
   }
 
@@ -224,7 +270,7 @@ class CreateProfile extends Component {
                 {socialInputs}
                 <input
                   type="submit"
-                  value="Enviar"
+                  value="Atualizar perfil"
                   className="btn btn-info btn-block mt-4"
                 />
               </form>
@@ -237,17 +283,17 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
-  auth: PropTypes.object.isRequired,
+EditProfile.propTypes = {
+  profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  profile: state.profile,
   errors: state.errors
 })
 
 export default connect(
   mapStateToProps,
-  { createProfile }
-)(withRouter(CreateProfile))
+  { createProfile, getCurrentProfile }
+)(withRouter(EditProfile))
